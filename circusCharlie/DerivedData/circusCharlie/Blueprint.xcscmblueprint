@@ -1,0 +1,23 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "ECA777C215901EF32A6B22A2A26B954525938820",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "ECA777C215901EF32A6B22A2A26B954525938820" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "EDA6BF37-E8ED-4429-8864-ADA6E7050EED",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "ECA777C215901EF32A6B22A2A26B954525938820" : "ArduinoGame\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "circusCharlie",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "circusCharlie\/circusCharlie.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/runnia\/ArduinoGame.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "ECA777C215901EF32A6B22A2A26B954525938820"
+    }
+  ]
+}

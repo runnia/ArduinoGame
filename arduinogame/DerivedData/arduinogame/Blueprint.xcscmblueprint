@@ -1,0 +1,23 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "ECA777C215901EF32A6B22A2A26B954525938820",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "ECA777C215901EF32A6B22A2A26B954525938820" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "54729C13-273C-4735-B5EE-446264AC640C",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "ECA777C215901EF32A6B22A2A26B954525938820" : "ArduinoGame\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "arduinogame",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "arduinogame\/arduinogame.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/runnia\/ArduinoGame.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "ECA777C215901EF32A6B22A2A26B954525938820"
+    }
+  ]
+}
