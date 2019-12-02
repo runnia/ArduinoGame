@@ -6,7 +6,7 @@
 	<integer>9</integer>
 	<key>logs</key>
 	<dict>
-		<key>1564875E-F9AA-460D-BFB9-E438923B025D</key>
+		<key>F9490B5A-8BA0-422F-9AB1-F6E23D73B5F1</key>
 		<dict>
 			<key>className</key>
 			<string>IDEActivityLogSection</string>
@@ -15,7 +15,7 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>1564875E-F9AA-460D-BFB9-E438923B025D.xcactivitylog</string>
+			<string>F9490B5A-8BA0-422F-9AB1-F6E23D73B5F1.xcactivitylog</string>
 			<key>highLevelStatus</key>
 			<string>S</string>
 			<key>schemeIdentifier-containerName</key>
@@ -27,13 +27,13 @@
 			<key>signature</key>
 			<string>Build circusCharlie</string>
 			<key>timeStartedRecording</key>
-			<real>594034653.47651803</real>
+			<real>596393234.014961</real>
 			<key>timeStoppedRecording</key>
-			<real>594034653.53230298</real>
+			<real>596393235.13355601</real>
 			<key>title</key>
 			<string>Build circusCharlie</string>
 			<key>uniqueIdentifier</key>
-			<string>1564875E-F9AA-460D-BFB9-E438923B025D</string>
+			<string>F9490B5A-8BA0-422F-9AB1-F6E23D73B5F1</string>
 		</dict>
 	</dict>
 </dict>

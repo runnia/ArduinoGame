@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5E80426223682E2400AA389E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5E80426123682E2400AA389E /* main.cpp */; };
+		5E80426223682E2400AA389E /* circusCharlie.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5E80426123682E2400AA389E /* circusCharlie.cpp */; };
+		5E982E2A238C4A410041FB49 /* charlie.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5E982E29238C4A410041FB49 /* charlie.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +25,9 @@
 
 /* Begin PBXFileReference section */
 		5E80425E23682E2400AA389E /* circusCharlie */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = circusCharlie; sourceTree = BUILT_PRODUCTS_DIR; };
-		5E80426123682E2400AA389E /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		5E80426123682E2400AA389E /* circusCharlie.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = circusCharlie.cpp; sourceTree = "<group>"; };
+		5E982E262383E19D0041FB49 /* circusCharlie.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = circusCharlie.h; sourceTree = "<group>"; };
+		5E982E29238C4A410041FB49 /* charlie.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = charlie.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +60,9 @@
 		5E80426023682E2400AA389E /* circusCharlie */ = {
 			isa = PBXGroup;
 			children = (
-				5E80426123682E2400AA389E /* main.cpp */,
+				5E80426123682E2400AA389E /* circusCharlie.cpp */,
+				5E982E29238C4A410041FB49 /* charlie.cpp */,
+				5E982E262383E19D0041FB49 /* circusCharlie.h */,
 			);
 			path = circusCharlie;
 			sourceTree = "<group>";
@@ -118,7 +123,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E80426223682E2400AA389E /* main.cpp in Sources */,
+				5E982E2A238C4A410041FB49 /* charlie.cpp in Sources */,
+				5E80426223682E2400AA389E /* circusCharlie.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
