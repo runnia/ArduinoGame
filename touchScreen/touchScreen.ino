@@ -31,7 +31,7 @@ extern uint8_t SevenSegNumFont[];
 UTFT myGLCD(TFT28UNO, RS, WR, CS, RST, SER);           // Создаём объект для работы с дисплеем
 TouchScreen ts = TouchScreen(XP, YP, XM, YM);          // Создаём объект для работы с TouchScreenUTFT 
 int score = 0;
-int lastSpeedUpScore = 0;
+
 int highestScore;
 int speedOfGame = 1;
 char name[3] = "KSU";
@@ -53,7 +53,10 @@ enum gameState {
   waitingInput,
   inputLocked
   };
+  
 gameState state = inMenu;
+bool haveInput = false;
+int obstPos = 0;
 
 void setup() {
   Serial.begin(9600);                                    // Инициируем передачу данных в монитор последовательного порта на скорости 9600 бит/сек
@@ -68,21 +71,41 @@ void drawHomeScreen() { //вывод стартового экрана
     myGLCD.setBackColor(0,0,0); // делаем фон черным
     myGLCD.setColor(255, 255, 255); // меняем цвет на белый
     myGLCD.setFont(BigFont); // выбираем один из шрифтов
-    myGLCD.print("Circus Charlie", CENTER, 64);
+    myGLCD.print("Circus Charlie", CENTER, 50);
     // кнопка
     myGLCD.setColor(20, 115, 40);
+    myGLCD.fillRoundRect (35, 90, 285, 130);
     myGLCD.fillRoundRect (35, 140, 285, 180);
+    myGLCD.fillRoundRect (35, 190, 285, 230);
     myGLCD.setColor(255, 255, 255);
     myGLCD.drawRoundRect (35, 140, 285, 180);
+    myGLCD.drawRoundRect (35, 90, 285, 130);
+    myGLCD.drawRoundRect (35, 190, 285, 230);
     myGLCD.setFont(BigFont);
     myGLCD.setBackColor(20, 115, 40);
-    myGLCD.print("PLAY", CENTER, 152);
+    myGLCD.print("SETTINGS", CENTER, 152);
+    myGLCD.print("PLAY", CENTER, 102);
+    myGLCD.print("RECORDS", CENTER, 202);
     myGLCD.setColor(20, 115, 40);
-    myGLCD.fillRoundRect (35, 190, 145, 220);
-    myGLCD.fillRoundRect (175, 190, 285, 220);
-    myGLCD.setFont(SmallFont);
-    myGLCD.print("Settings", CENTER, 152);
-    myGLCD.print("Scores", CENTER, 152);
+    
+}
+void drawRecords(){ 
+    myGLCD.clrScr();
+    myGLCD.setFont(BigFont);
+    myGLCD.setColor(255, 255, 255);
+    myGLCD.print("RECORDS", CENTER, 50);
+    myGLCD.print("1.",LEFT, 90);
+    myGLCD.print("Players name", CENTER, 90);
+    //myGLCD.print( highestScore, RIGHT, 90);
+    myGLCD.setColor (13, 56, 163);
+    myGLCD.fillRect(0,0,40,40);
+    
+}
+void drawSettings(){ 
+    myGLCD.clrScr();
+    myGLCD.setFont(BigFont);
+    myGLCD.setColor(255, 255, 255);
+    myGLCD.print("SETTINGS", CENTER, 40);
     
 }
 void initiateGame(){ //функция, отвечающая за отрисовку фона
@@ -118,11 +141,34 @@ void initiateGame(){ //функция, отвечающая за отрисов�
 //    myGLCD.setFont(BigFont);
 //    myGLCD.print("TAP TO START",CENTER,100);
     //myGLCD.drawBitmap (50, 60, 20, 24, charlie);
-    
 }
-//void Render(){
-//  
-//}
+
+void drawObstacles(int x){
+  myGLCD.setColor(240, 115, 26);
+  myGLCD.drawRoundRect (x-10, 120, x-1, 160);
+  myGLCD.setColor(20, 115, 40);
+  myGLCD.fillRect (x, 120, x+10, 160);
+}
+
+void drawCharlie(int air){
+  myGLCD.setColor(20, 115, 40);
+  myGLCD.fillRect (30, 120, 40, 200);
+  myGLCD.setColor(232, 194, 167);
+  if (air!= 0){
+  myGLCD.fillRect(30, 120, 40, 160);
+  air--;
+  }
+  else{
+  myGLCD.fillRect(30, 160, 40, 200);
+  }
+}
+
+
+void render(int x,int air){
+  drawObstacles(x);
+  drawCharlie(air);
+
+}
 void gameOver(){ //функция, отвечающая за прекращение игры (при нажатии RESTART)
   delay(1000); 
   myGLCD.clrScr();
@@ -144,29 +190,11 @@ void gameOver(){ //функция, отвечающая за прекращен�
   }
   // Resets the variables to start position values
   score = 0;
-  lastSpeedUpScore = 0;
-  currentPage = 0; 
+  state = inMenu;
   initiateGame();
 }
-void drawObstacles(int x){
-  myGLCD.setColor(240, 115, 26);
-  myGLCD.drawRoundRect (x-10, 120, x-1, 160);
-  myGLCD.setColor(20, 115, 40);
-  myGLCD.fillRect (x, 120, x+10, 160);
-}
-void drawCharlie(int air){
-  myGLCD.setColor(20, 115, 40);
-  myGLCD.fillRect (30, 120, 40, 200);
-  myGLCD.setColor(232, 194, 167);
-  if (playerIsInAir){
-  myGLCD.fillRect(30, 120, 40, 160);
-  delay(200);
-  }
-  else{
-  myGLCD.fillRect(30, 160, 40, 200);
-  playerIsInAir = false;
-  }
-}
+
+
 
 void loop() {
   TSPoint p = ts.getPoint();                             // Считываем координаты и интенсивность нажатия на TouchScreen в структуру p
@@ -176,26 +204,32 @@ void loop() {
                                                          // Преобразуем значения полученные с TouchScreen в координаты дисплея:
     p.x = map(p.x, tsMinX, tsMaxX, 0, 320);              // Преобразуем значение p.x от диапазона tsMinX...tsMaxX, к диапазону 0...320
     p.y = map(p.y, tsMinY, tsMaxY, 0, 240);              // Преобразуем значение p.y от диапазона tsMinY...tsMaxY, к диапазону 0...240
-  }
-  if ((p.x > 35 && p.x < 285) && (p.y > 140 && p.y < 180)){
-    initiateGame();
-    state = inputLocked;
-  }
   
-  if (gameStarted){
-    air --;
-    if (air == 0){
-      playerIsInAir = false;
-    }
-    if ((p.x > 0 && p.x < 319) && (p.y > 30 && p.y < 239)){
-      playerIsInAir = true;
-      air = 2;
-    }
+  if ((p.x > 35 && p.x < 285) && (p.y > 140 && p.y < 180)&&(state == inMenu)){
+    //initiateGame();
+    drawRecords();
+    state = waitingInput;
+  } 
+  else if (state == waitingInput){
+    air = air == 0 ? 2 : air;
+    state = inputLocked;
+    haveInput = true;
     timer++; 
-    drawCharlie(air);
-    xO = xO - movingRate;
-    drawObstacles(xO);
-    delay(500);
+  }
+  else if(state == inputLocked)
+  {
+   timer++;
+
+    if(timer == 4) {
+      timer = 0;
+      state = waitingInput;
+      if(haveInput) {
+       
+      
+    }
+    }
+  }
+   delay(500);
   }
 }  
   
